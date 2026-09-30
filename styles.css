@@ -1,0 +1,449 @@
+:root{
+  --pink:#ff4f88;
+  --ink:#17113d;
+  --cream:#fff8ec;
+  --violet:#6546ff;
+  --radius:34px;
+  color-scheme:light only;
+}
+
+*{box-sizing:border-box}
+html{min-height:100%;background:var(--pink);color-scheme:light only}
+body{margin:0;min-height:100%;font-family:"Nunito Sans",Arial,sans-serif;color:var(--ink);background:var(--pink);color-scheme:light only}
+button,input{font:inherit;color-scheme:light only}
+button{cursor:pointer}
+
+.page-shell{
+  position:relative;
+  min-height:100dvh;
+  overflow:hidden;
+  padding:54px 18px 90px;
+  display:grid;
+  place-items:center;
+  background-color:var(--pink);
+  background-image:linear-gradient(rgba(255,67,126,.035),rgba(255,67,126,.035)),url('assets/pink-paper-texture.png');
+  /* Mantiene la textura a su resolución nativa para evitar pixelado en páginas altas */
+  background-size:2048px 1153px;
+  background-position:center top;
+  background-repeat:repeat;
+}
+
+.sticker-layer{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.sticker{
+  position:absolute;
+  display:block;
+  object-fit:contain;
+  filter:drop-shadow(0 12px 10px rgba(90,0,46,.18));
+  animation:floatSpin 7s ease-in-out infinite;
+  will-change:translate,rotate;
+}
+
+/* Desktop: stickers repartidos por todo el lienzo */
+.s2{width:82px;left:5%;top:4%;transform:rotate(-14deg)}
+.s3{width:190px;left:1%;top:18%;transform:rotate(-11deg);animation-delay:-1s}
+.s4{width:180px;right:1%;top:4%;transform:rotate(8deg);animation-delay:-3s}
+.s5{width:108px;right:9%;top:23%;transform:rotate(10deg);animation-delay:-4s}
+.s6{width:135px;left:4%;top:42%;transform:rotate(-8deg);animation-delay:-2s}
+.s7{width:72px;right:6%;top:43%;transform:rotate(9deg);animation-delay:-5s}
+.s8{width:185px;right:2%;top:61%;transform:rotate(10deg);animation-delay:-2.6s}
+.s9{width:135px;left:1%;top:69%;transform:rotate(-9deg);animation-delay:-4.5s}
+.s10{width:74px;left:20%;top:11%;transform:rotate(12deg);animation-delay:-3.4s}
+.s11{width:185px;right:3%;top:34%;transform:rotate(7deg);animation-delay:-1.7s}
+.s12{width:110px;left:13%;bottom:5%;transform:rotate(-6deg);animation-delay:-4.2s}
+.s13{width:130px;right:13%;bottom:7%;transform:rotate(8deg);animation-delay:-2.3s}
+.s14{width:58px;right:24%;top:15%;transform:rotate(-10deg);animation-delay:-5.2s}
+.s15{width:105px;left:25%;bottom:15%;transform:rotate(-4deg);animation-delay:-3.2s}
+.s16{width:92px;right:26%;bottom:24%;transform:rotate(7deg);animation-delay:-1.4s}
+.s17{width:205px;left:2%;top:30%;transform:rotate(-6deg);animation-delay:-2.2s}
+.s18{width:210px;right:2%;top:49%;transform:rotate(7deg);animation-delay:-4.1s}
+.s19{width:165px;left:7%;bottom:21%;transform:rotate(11deg);animation-delay:-1.1s}
+.s20{width:115px;right:18%;top:2%;transform:rotate(-9deg);animation-delay:-3.6s}
+.s21{width:165px;left:3%;top:56%;transform:rotate(-10deg);animation-delay:-5s}
+.s22{width:100px;right:6%;bottom:14%;transform:rotate(8deg);animation-delay:-2.8s}
+
+/* Duplicados decorativos: ocupan zonas interiores y vacíos del viewport */
+.e1{width:52px;left:31%;top:5%;transform:rotate(17deg);animation-delay:-1.8s}
+.e2{width:55px;right:33%;top:9%;transform:rotate(-13deg);animation-delay:-4.8s}
+.e3{width:44px;left:29%;top:36%;transform:rotate(9deg);animation-delay:-2.8s}
+.e4{width:76px;right:29%;top:30%;transform:rotate(-8deg);animation-delay:-5.4s}
+.e5{width:48px;left:31%;top:61%;transform:rotate(-12deg);animation-delay:-3.5s}
+.e6{width:86px;right:31%;top:67%;transform:rotate(10deg);animation-delay:-1.2s}
+.e7{width:78px;left:27%;bottom:6%;transform:rotate(-15deg);animation-delay:-4.3s}
+.e8{width:84px;right:26%;bottom:11%;transform:rotate(11deg);animation-delay:-2.1s}
+.e9{width:112px;left:17%;top:50%;transform:rotate(6deg);animation-delay:-5.8s;opacity:.86}
+.e10{width:105px;right:17%;top:56%;transform:rotate(-7deg);animation-delay:-3.9s;opacity:.88}
+
+.card,.success{
+  position:relative;
+  z-index:5;
+  width:min(720px,100%);
+  padding:46px 42px 40px;
+  border-radius:var(--radius);
+  background:rgba(255,248,236,.86);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 24px 80px rgba(88,0,45,.24),inset 0 1px 0 rgba(255,255,255,.9);
+  border:1px solid rgba(255,255,255,.72)
+}
+.holo-ring{position:absolute;inset:-3px;border-radius:calc(var(--radius) + 3px);z-index:-1;background:conic-gradient(from 70deg,#ffea77,#7dfff5,#d6a6ff,#ff91ca,#fff596,#81e5ff,#d8a8ff,#ffea77);filter:saturate(1.15);opacity:.8}
+.hero{text-align:center;max-width:560px;margin:0 auto 34px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.16em;background:var(--ink);color:white;padding:9px 13px;border-radius:999px}
+h1,h2{margin:14px 0 12px;font-weight:900;letter-spacing:-.065em;line-height:.86;text-transform:uppercase}
+h1{font-size:clamp(48px,8vw,82px)}
+h1 span{display:inline-block;background:linear-gradient(90deg,#5136ff,#0cb8ea,#ff4290);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:0 auto;max-width:450px;font-size:16px;line-height:1.45;font-weight:700;color:#413c5d}
+.hero-copy-mobile{display:none}
+.hero-time{display:inline-block;margin-top:6px;font-weight:900;color:var(--ink)}
+form{position:relative;z-index:2}
+.field-label,legend{display:block;margin:0 0 10px;font-size:12px;font-weight:900;letter-spacing:.11em;line-height:1.35}
+#guestName{width:100%;height:58px;border:2px solid rgba(21,17,57,.14);outline:none;border-radius:18px;padding:0 18px;background:rgba(255,255,255,.78)!important;color:var(--ink)!important;-webkit-text-fill-color:var(--ink)!important;font-weight:800;font-size:17px;box-shadow:inset 0 1px 0 rgba(255,255,255,.9);transition:.2s ease}
+#guestName:focus{border-color:#5e51ff;box-shadow:0 0 0 4px rgba(94,81,255,.12)}
+#guestName::placeholder{color:#817c95!important;-webkit-text-fill-color:#817c95!important;opacity:1}
+fieldset{border:0;padding:0;margin:26px 0 0}
+.poll-group.compact{padding-top:4px}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.choice{position:relative;min-height:164px;text-align:left;border:2px solid transparent;border-radius:22px;padding:20px;color:var(--ink)!important;-webkit-text-fill-color:var(--ink)!important;background:linear-gradient(rgba(255,248,236,.94),rgba(255,248,236,.94)) padding-box,conic-gradient(from 70deg,#ffea77,#7dfff5,#d6a6ff,#ff91ca,#fff596,#81e5ff,#d8a8ff,#ffea77) border-box;box-shadow:0 8px 20px rgba(72,28,68,.08);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;overflow:hidden}
+.choice::after{content:none}
+.choice:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:0 14px 26px rgba(72,28,68,.12);filter:saturate(1.08)}
+.choice:nth-child(2):hover{transform:translateY(-3px) rotate(.4deg)}
+.choice.selected{background:linear-gradient(135deg,rgba(255,63,134,.96) 0%,rgba(255,121,188,.94) 27%,rgba(238,127,255,.90) 52%,rgba(255,170,221,.94) 72%,rgba(255,63,134,.96) 100%) padding-box,conic-gradient(from 35deg,#fff5a8,#8dfff6,#dfa8ff,#ff8fc7,#fff29b,#8fe9ff,#e6b1ff,#fff5a8) border-box;box-shadow:0 0 0 4px rgba(255,74,153,.18),0 16px 32px rgba(130,24,91,.26),inset 0 1px 0 rgba(255,255,255,.55);transform:translateY(-2px) scale(1.015);filter:saturate(1.18);color:#151139!important;-webkit-text-fill-color:#151139!important}
+.choice-kicker,.choice-note{display:block;font-size:11px;font-weight:900;letter-spacing:.12em;position:relative;z-index:1}
+.choice strong{display:block;margin:8px 0;font-size:28px;letter-spacing:-.055em;line-height:.91;position:relative;z-index:1}
+.choice-note{letter-spacing:0;text-transform:none;color:#625c77!important;-webkit-text-fill-color:#625c77!important}
+.mini-choice{min-height:76px;text-align:center;display:grid;place-items:center;padding:14px}
+.mini-choice strong{margin:0;font-size:25px}
+.reminder{margin:28px 0 2px;padding:16px 18px;border:2px dashed rgba(21,17,57,.18);border-radius:18px;background:rgba(255,228,85,.35)!important;display:flex;align-items:center;gap:12px}
+.reminder-star{font-size:26px;line-height:1;color:#6b45ff}
+.reminder p{margin:0;font-size:15px;line-height:1.4;font-weight:800;color:#3e3859!important;-webkit-text-fill-color:#3e3859!important}
+.form-message{min-height:20px;margin:13px 0 5px;font-size:13px;font-weight:800;color:#8f1747}
+.submit{width:100%;height:60px;border:0;border-radius:18px;background:var(--ink)!important;color:white!important;-webkit-text-fill-color:white!important;font-weight:900;letter-spacing:.08em;box-shadow:0 11px 0 #5f36e7;transition:.16s ease;display:flex;align-items:center;justify-content:center;gap:10px}
+.submit:hover{transform:translateY(-2px);box-shadow:0 13px 0 #5f36e7}
+.submit:active{transform:translateY(6px);box-shadow:0 5px 0 #5f36e7}
+.submit:disabled{cursor:wait;opacity:.72;transform:none;box-shadow:0 8px 0 #5f36e7}
+
+.success{text-align:center;padding:48px 38px}
+.success[hidden]{display:none}
+.success h2{font-size:clamp(42px,7.3vw,70px);line-height:.9}
+.success p{font-weight:800;color:#4a4561}
+.success button{margin-top:12px;border:0;background:transparent;color:var(--ink);font-weight:900;text-decoration:underline;text-underline-offset:4px}
+
+/* Éxito: el mensaje queda centrado en la pantalla y los stickers ocupan todo el fondo */
+.page-shell.success-mode{min-height:100dvh;place-items:center;padding:36px 18px}
+.page-shell.success-mode .sticker-layer{z-index:2}
+.page-shell.success-mode .success{z-index:6;width:min(620px,76vw);max-width:620px;background:rgba(255,248,236,.91);margin:0}
+.page-shell.success-mode .s17{width:min(360px,26vw);left:4%;top:66%;transform:rotate(-7deg);opacity:1;z-index:4;filter:drop-shadow(0 22px 18px rgba(90,0,46,.22))}
+.page-shell.success-mode .s18{width:200px;right:5%;top:8%}
+.page-shell.success-mode .s19{width:140px;left:18%;top:7%}
+.page-shell.success-mode .s20{width:105px;right:19%;bottom:8%;top:auto}
+.page-shell.success-mode .s21{width:150px;left:8%;bottom:4%;top:auto}
+.page-shell.success-mode .s22{width:92px;right:5%;bottom:28%}
+.page-shell.success-mode .s3{width:160px;left:auto;right:1%;top:55%}
+.page-shell.success-mode .s4{width:130px;right:10%;top:32%}
+.page-shell.success-mode .s5{width:76px;left:17%;right:auto;top:28%}
+.page-shell.success-mode .s7{width:58px;right:28%;top:15%}
+
+.boo-overlay{position:fixed;inset:0;z-index:50;pointer-events:none;display:none;place-items:center;overflow:hidden;background:rgba(255,62,135,.08);backdrop-filter:blur(1px)}
+.boo-overlay.active{display:grid;animation:booFade 1.15s ease both}
+.boo-main{font-size:clamp(86px,18vw,230px);font-weight:900;letter-spacing:-.08em;color:#17113d;text-shadow:6px 6px 0 #ffe455,-6px -6px 0 #ff7bc4;transform:rotate(-5deg);animation:booPop 1.05s cubic-bezier(.18,.89,.32,1.28) both}
+.boo-cloud{position:absolute;font-weight:900;color:#fff7e8;background:#17113d;border:3px solid #fff7e8;padding:12px 18px;border-radius:999px;box-shadow:0 8px 0 #6b45ff;animation:booBubble 1.05s ease both}
+.boo-cloud-a{left:9%;top:19%;transform:rotate(-10deg)}
+.boo-cloud-b{right:9%;top:28%;transform:rotate(9deg);animation-delay:.06s}
+.boo-cloud-c{left:50%;bottom:14%;transform:translateX(-50%) rotate(-3deg);animation-delay:.12s}
+.boo-cloud-d{right:17%;bottom:28%;transform:rotate(7deg);animation-delay:.17s;background:#ff3f86;color:#17113d;border-color:#ffe455;box-shadow:0 8px 0 #17113d}
+.card.boo-shake{animation:booShake .6s ease}
+@keyframes booPop{0%{transform:scale(.2) rotate(-12deg);opacity:0}45%{transform:scale(1.18) rotate(6deg);opacity:1}100%{transform:scale(1) rotate(-5deg);opacity:1}}
+@keyframes booBubble{0%{opacity:0;scale:.4}55%{opacity:1;scale:1.15}100%{opacity:1;scale:1}}
+@keyframes booFade{0%{opacity:0}15%,78%{opacity:1}100%{opacity:0}}
+@keyframes booShake{0%,100%{transform:translateX(0) rotate(0)}20%{transform:translateX(-8px) rotate(-.7deg)}40%{transform:translateX(8px) rotate(.7deg)}60%{transform:translateX(-5px) rotate(-.4deg)}80%{transform:translateX(5px) rotate(.4deg)}}
+
+@keyframes floatSpin{
+  0%,100%{translate:0 0;rotate:-1.4deg}
+  50%{translate:0 -11px;rotate:1.8deg}
+}
+
+@media (max-width:1000px) and (min-width:641px){
+  .sticker{opacity:.86}
+  .s3{left:-55px}.s4{right:-45px}.s8{right:-50px}.s9{left:-45px}.s11{right:-45px}
+}
+
+@media (max-width:640px){
+  .page-shell{
+    min-height:100dvh;
+    padding:20px 10px 58px;
+    align-items:start;
+    /* misma resolución de textura en mobile; no se estira según la altura de la poll */
+    background-size:2048px 1153px;
+    background-position:center top;
+    background-repeat:repeat;
+  }
+
+  /* La poll deja un margen real para que aparezca el juego de stickers */
+  .card{
+    width:min(86vw,360px);
+    padding:27px 16px 25px;
+    border-radius:26px;
+    margin-top:30px;
+  }
+
+  .hero{margin-bottom:22px;max-width:100%}
+  .eyebrow{font-size:10px;padding:8px 11px;letter-spacing:.14em}
+
+  /* Fuerza dos líneas: “¿TE QUEDÁS” + “A DORMIR?” */
+  h1{font-size:clamp(38px,11.2vw,48px);line-height:.88;white-space:nowrap;margin-top:15px}
+  h1 span{white-space:nowrap}
+
+  .hero p{font-size:13px;line-height:1.38;max-width:290px}
+  .hero-copy-desktop{display:none}
+  .hero-copy-mobile{display:inline}
+  .hero-time{margin-top:5px;font-size:12px}
+
+  .field-label,legend{font-size:10px;letter-spacing:.10em;margin-bottom:8px}
+  #guestName{height:50px;border-radius:16px;padding:0 15px;font-size:15px}
+  fieldset{margin-top:20px}
+  .plan-grid{grid-template-columns:1fr;gap:9px}
+  .choice{min-height:108px;padding:15px;border-radius:18px}
+  .choice strong{font-size:22px}
+  .choice-kicker,.choice-note{font-size:9.5px}
+  .yes-no-grid{grid-template-columns:1fr 1fr;gap:9px}
+  .mini-choice{min-height:58px;padding:10px}
+  .mini-choice strong{font-size:20px}
+  .reminder{margin-top:21px;padding:13px 14px;border-radius:16px;gap:9px}
+  .reminder-star{font-size:22px}
+  .reminder p{font-size:12.5px}
+  .submit{height:52px;border-radius:16px;font-size:12px}
+
+  /* En mobile los stickers entran hacia el centro, no quedan sólo en los bordes */
+  .sticker{opacity:.88;filter:drop-shadow(0 7px 7px rgba(90,0,46,.17))}
+  .s2{width:52px;left:2%;top:1%}
+  .s3{width:104px;left:-30px;top:12%}
+  .s4{width:96px;right:-28px;top:2%}
+  .s5{width:64px;right:2%;top:20%}
+  .s6{width:80px;left:-24px;top:35%}
+  .s7{width:46px;right:8%;top:39%}
+  .s8{width:100px;right:-34px;top:53%}
+  .s9{width:75px;left:-18px;top:61%}
+  .s10{width:46px;left:18%;top:7%}
+  .s11{width:105px;right:-34px;top:31%}
+  .s12{width:66px;left:8%;bottom:3%}
+  .s13{width:75px;right:8%;bottom:4%}
+  .s14{width:40px;right:21%;top:11%}
+  .s15{width:62px;left:19%;bottom:13%}
+  .s16{width:56px;right:18%;bottom:22%}
+  .s17{width:115px;left:-28px;top:26%;z-index:4}
+  .s18{width:110px;right:-35px;top:45%}
+  .s19{width:88px;left:-20px;bottom:18%}
+  .s20{width:66px;right:13%;top:1%}
+  .s21{width:92px;left:-26px;top:49%}
+  .s22{width:60px;right:-7px;bottom:11%}
+
+  .e1{width:38px;left:42%;top:2%}
+  .e2{width:37px;right:38%;top:16%}
+  .e3{width:34px;left:10%;top:47%}
+  .e4{width:48px;right:11%;top:62%}
+  .e5{width:34px;left:38%;top:72%}
+  .e6{width:52px;right:35%;top:82%}
+  .e7{width:46px;left:7%;bottom:8%}
+  .e8{width:50px;right:7%;bottom:17%}
+  .e9{width:72px;left:3%;top:78%;opacity:.9}
+  .e10{width:70px;right:1%;top:72%;opacity:.9}
+
+  /* Success: centrado en ambos ejes, más chico y dejando mucho fondo visible */
+  .page-shell.success-mode{
+    min-height:100dvh;
+    padding:18px 10px;
+    place-items:center;
+  }
+  .page-shell.success-mode .success{
+    width:min(80vw,330px);
+    padding:27px 16px 24px;
+    border-radius:24px;
+    margin:0;
+  }
+  .page-shell.success-mode .success h2{
+    font-size:clamp(29px,8.8vw,38px);
+    line-height:.92;
+    margin:14px 0 12px;
+  }
+  .page-shell.success-mode .success p{font-size:14px;margin:14px 0}
+  .page-shell.success-mode .success button{font-size:13px;margin-top:6px}
+
+  .page-shell.success-mode .s17{width:150px;left:-25px;top:auto;bottom:3%;transform:rotate(-8deg)}
+  .page-shell.success-mode .s18{width:102px;right:-20px;top:4%}
+  .page-shell.success-mode .s19{width:82px;left:5%;top:4%}
+  .page-shell.success-mode .s20{width:65px;right:4%;bottom:2%}
+  .page-shell.success-mode .s21{width:92px;left:-18px;bottom:20%;top:auto}
+  .page-shell.success-mode .s22{width:58px;right:-8px;bottom:25%}
+  .page-shell.success-mode .s3{width:96px;right:-25px;top:54%;left:auto}
+  .page-shell.success-mode .s4{width:78px;right:2%;top:23%}
+  .page-shell.success-mode .s5{width:56px;left:3%;top:27%}
+  .page-shell.success-mode .s7{width:43px;right:17%;top:13%}
+
+  .boo-cloud{font-size:12px;padding:9px 12px}
+  .boo-cloud-d{right:7%;bottom:27%}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+
+/* =========================================================
+   FINAL V5 — denser desktop stickers, draggable stickers,
+   slowly moving holographic frame
+   ========================================================= */
+
+/* More decorative stickers across the full desktop canvas */
+.e11{width:92px;left:7%;top:34%;transform:rotate(9deg);animation-delay:-2.7s}
+.e12{width:130px;right:7%;top:73%;transform:rotate(-11deg);animation-delay:-4.9s}
+.e13{width:142px;left:9%;top:82%;transform:rotate(7deg);animation-delay:-1.9s}
+.e14{width:90px;right:9%;top:18%;transform:rotate(-8deg);animation-delay:-5.7s}
+.e15{width:138px;left:21%;top:8%;transform:rotate(-6deg);animation-delay:-3.1s}
+.e16{width:155px;right:20%;top:39%;transform:rotate(8deg);animation-delay:-4.2s}
+.e17{width:126px;left:22%;top:74%;transform:rotate(-10deg);animation-delay:-2.2s}
+.e18{width:60px;right:34%;top:8%;transform:rotate(13deg);animation-delay:-5.1s}
+.e19{width:84px;left:35%;top:89%;transform:rotate(-7deg);animation-delay:-3.8s}
+.e20{width:48px;right:37%;top:48%;transform:rotate(12deg);animation-delay:-1.4s}
+
+/* Slight independent rotation while floating */
+.sticker{
+  pointer-events:auto;
+  cursor:grab;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-drag:none;
+  animation-name:floatAndTurn;
+  animation-duration:7.5s;
+  animation-timing-function:ease-in-out;
+  animation-iteration-count:infinite;
+}
+
+.sticker.dragging{
+  cursor:grabbing;
+  z-index:30!important;
+  animation:none!important;
+  transition:none!important;
+  filter:drop-shadow(0 20px 18px rgba(90,0,46,.28));
+}
+
+@keyframes floatAndTurn{
+  0%,100%{translate:0 0;rotate:-1.4deg}
+  50%{translate:0 -12px;rotate:1.4deg}
+}
+
+/* Slowly animated holographic frame around the main poll */
+.holo-ring{
+  background:linear-gradient(
+    115deg,
+    #ffea77 0%,
+    #7dfff5 14%,
+    #d6a6ff 28%,
+    #ff91ca 42%,
+    #fff596 56%,
+    #81e5ff 70%,
+    #d8a8ff 84%,
+    #ffea77 100%
+  );
+  background-size:300% 300%;
+  animation:holoFlow 11s ease-in-out infinite;
+}
+
+@keyframes holoFlow{
+  0%{background-position:0% 50%;filter:saturate(1.12) hue-rotate(0deg)}
+  50%{background-position:100% 50%;filter:saturate(1.25) hue-rotate(18deg)}
+  100%{background-position:0% 50%;filter:saturate(1.12) hue-rotate(0deg)}
+}
+
+@media (max-width:640px){
+  /* Keep mobile composition readable; the new desktop-only duplicates stay hidden. */
+  .desktop-extra{display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .holo-ring{animation:none!important}
+}
+
+
+/* =========================================================
+   FINAL V6 — holographic success card + larger mobile stickers
+   ========================================================= */
+
+/* Success state uses the same moving holographic language as the main poll. */
+.page-shell.success-mode .success{
+  position:relative;
+  overflow:visible;
+  border:0;
+  background:
+    linear-gradient(rgba(255,248,236,.84),rgba(255,248,236,.84)) padding-box,
+    linear-gradient(
+      115deg,
+      #ffea77 0%,
+      #7dfff5 14%,
+      #d6a6ff 28%,
+      #ff91ca 42%,
+      #fff596 56%,
+      #81e5ff 70%,
+      #d8a8ff 84%,
+      #ffea77 100%
+    ) border-box;
+  background-size:100% 100%,300% 300%;
+  border:3px solid transparent;
+  animation:successHoloFlow 11s ease-in-out infinite;
+  box-shadow:0 24px 80px rgba(88,0,45,.24),inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+@keyframes successHoloFlow{
+  0%{background-position:0 0,0% 50%;filter:saturate(1.08) hue-rotate(0deg)}
+  50%{background-position:0 0,100% 50%;filter:saturate(1.2) hue-rotate(18deg)}
+  100%{background-position:0 0,0% 50%;filter:saturate(1.08) hue-rotate(0deg)}
+}
+
+@media (max-width:640px){
+  /* Slightly larger mobile stickers so the visual game reads more clearly. */
+  .s2{width:60px}
+  .s3{width:118px}
+  .s4{width:110px}
+  .s5{width:72px}
+  .s6{width:90px}
+  .s7{width:52px}
+  .s8{width:114px}
+  .s9{width:84px}
+  .s10{width:52px}
+  .s11{width:118px}
+  .s12{width:74px}
+  .s13{width:84px}
+  .s14{width:46px}
+  .s15{width:70px}
+  .s16{width:64px}
+  .s17{width:130px}
+  .s18{width:124px}
+  .s19{width:98px}
+  .s20{width:74px}
+  .s21{width:104px}
+  .s22{width:68px}
+
+  .e1{width:44px}
+  .e2{width:42px}
+  .e3{width:40px}
+  .e4{width:55px}
+  .e5{width:40px}
+  .e6{width:60px}
+  .e7{width:54px}
+  .e8{width:58px}
+  .e9{width:82px}
+  .e10{width:80px}
+
+  .page-shell.success-mode .s17{width:172px}
+  .page-shell.success-mode .s18{width:116px}
+  .page-shell.success-mode .s19{width:92px}
+  .page-shell.success-mode .s20{width:72px}
+  .page-shell.success-mode .s21{width:104px}
+  .page-shell.success-mode .s22{width:66px}
+  .page-shell.success-mode .s3{width:108px}
+  .page-shell.success-mode .s4{width:88px}
+  .page-shell.success-mode .s5{width:64px}
+  .page-shell.success-mode .s7{width:48px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .page-shell.success-mode .success{animation:none!important}
+}
